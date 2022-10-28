@@ -11,21 +11,21 @@ class App extends React.Component {
                   price:99,
                   title:'Watch',
                   qty:1,
-                  img:'',
+                  img:'https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80',
                   id:1
               },
               {
                   price:999,
                   title:'Mobile Phone',
                   qty:10,
-                  img:'',
+                  img:'https://images.unsplash.com/photo-1520923642038-b4259acecbd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1119&q=80',
                   id:2
               },
               {
                   price:999,
                   title:'Laptop',
                   qty:4,
-                  img:'',
+                  img:'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80',
                   id:3
               }
           ]
@@ -60,6 +60,14 @@ class App extends React.Component {
           products:item
       })
   }
+  getCartTotal=()=>{
+    let cartTotal=0;
+    const products=this.state.products;
+    for(let product of products){
+      cartTotal+=product.qty*product.price
+    }
+    return cartTotal;
+  }
   getCount=()=>{
     let count=0;
     const {products}=this.state;
@@ -78,6 +86,7 @@ class App extends React.Component {
               onIncreaseQuantity={this.handleIncreaseQuantity} 
               onDecreaseQuantity={this.handleDecreaseQuantity}
               handleDeleteProduct={this.handleDeleteProduct}/>
+        <div style={{fontSize:20,padding:10}}>Total:{this.getCartTotal()}</div>
       </div>
     );
   }
